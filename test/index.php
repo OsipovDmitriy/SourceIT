@@ -1,88 +1,103 @@
-<?php  
-include 'safemysql.class.php';
+<?php
+echo "HELLO WORLD";
+echo "<br>";
+print "sdsds";
 
-$db     = new SafeMysql();
-$table  = "users"; 
-$fields = ['name', 'car', 'sex'];
+$name = "Vasya";
+echo "<br>";
+echo "hello my name is $name";
+echo "<br>";
+echo "hello my name is ", $name;
+echo "<br>";
+echo "hello my name is " . $name;
+echo "<br>";
+echo 'hello my name is $name';
+echo "<br>";
+$a = 23;
+$b = 2;
+echo $a + $b;
+echo "<br>";
+echo gettype($a);
+$a = 2.4;
+$b = 4.6;
+echo "<br>";
+echo $a + $b;
+echo "<br>";
+echo gettype($a);
+echo "<br>";
+$foo = true; // 1...n or string
+$bar = false; //
+echo $foo;
+echo "<br>";
+echo $bar;
+echo $ba;
+$ba = $ba + 3;
+echo $ba;
+echo "<br>";
+$ba = true;
+$ba = 1 + 3;
+echo $ba;
+$myName = "Eugene";
+$null = null;
+echo "<br>";
+echo $null;
+//echo 4 / 0;
 
-if($_SERVER['REQUEST_METHOD']=='POST')
-{
-    $data = $db->filterArray($_POST, $fields);
-    if (isset($_POST['delete']))
-    {
-        $db->query("DELETE FROM ?n WHERE id=?i", $table, $_POST['delete']);
-    } elseif ($_POST['id']) { 
-        $db->query("UPDATE ?n SET ?u WHERE id = ?i", $table, $data, $_POST['id']);
-    } else { 
-        $db->query("INSERT INTO ?n SET ?u", $table, $data);
-    } 
-    header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);  
-    exit;  
-}
+/*  sdf
+sdf
+*/
+echo "<br>";
+$a = 10;
+$b = '2';
+echo $a + (int)$b;
+echo "<br>";
+$a = 10;
+$b = '2a';
+echo $a + $b;
+echo "<br>";
+$a = 10.9;
+$b = '2.3';
+echo (float)$a + (float)$b;
+settype($b, "float");
+echo "<br>";
+echo (float)$a . " " . (float)$b;
+echo "<br> $a $b";
+$result = $a / $b;
+echo "<br> $a / $b = $result";
 
-if (!isset($_GET['id']))
-{
-    $LIST = $db->getAll("SELECT * FROM ?n", $table);
-    include 'list.php';
-} else {
-    if ($_GET['id'])
-    {
-        $row = $db->getRow("SELECT * FROM ?n WHERE id=?i", $table, $_GET['id']);
-    } else { 
-        $row['name'] = ''; 
-        $row['sex']  = ''; 
-        $row['car']  = ''; 
-        $row['id']   = 0; 
-    } 
-    include 'form.php';
-}
+$result = $a / $b;
+$result = round($result, 2);
+echo "<br> $a / $b = $result";
 
-// эта функция не нужна для работы с БД, но нужна для примеров вывода
-// поскольку вывод всегда должен быть экранирован
-function e($str)
-{
-   return htmlspecialchars($str, ENT_QUOTES, 'utf-8');
-}
+$result = $a / $b;
+$result = floor($result);
+echo "<br> $a / $b = $result";
 
+$result = $a / $b;
+$result = ceil($result);
+echo "<br> $a / $b = $result";
 
-плюс файлы шаблонов, 
+echo "<br>", rand(5, 15);
 
-list.php
-<a href="?id=0">Add item</a>
-<table border=1>
-    <tr>
-        <td><b>Name</b></td>
-        <td><b>Car</b></td>
-        <td><b>Sex</b></td>
-        <td><b>Action</b></td>
-    </tr>
-<?php foreach ($LIST as $row): ?>
-    <tr>
-        <td><?=e($row['name'])?></td>
-        <td><?=e($row['car'])?></td>
-        <td><?=e($row['sex'])?></td>
-        <td><a href="?id=<?=e($row['id'])?>">Edit</a></td>
-    </tr>
-<?php endforeach ?>
-</table>
+define('PI', 3.14);
+echo "<br>", PI;
 
+const FOO = 123;
+echo "<br>", FOO;
 
-и form.php
-<form method="POST">
-    Name: <input type="text" name="name" value="<?=e($row['name'])?>"><br>
-    Car: <input type="text" name="car" value="<?=e($row['car'])?>"><br>
-    Sex: <select name="sex">
-        <option<?php if ($row['sex'] == 'male'):   ?> selected="selected"<?php endif ?>>male</option>
-        <option<?php if ($row['sex'] == 'female'): ?> selected="selected"<?php endif ?>>female</option>
-    </select>
-    <input type="hidden" name="id" value="<?=e($row['id'])?>">
-    <input type="submit"><br>
-</form>
-<a href="?">Return to the list</a>
+$baz = 10;
+$baz = $baz + 1; // 11
+$baz += 1;
 
-<?php if ($row['id']): ?>
-<form method="POST">
-<input type="hidden" name="delete" value="<?=e($row['id'])?>">
-<input type="submit" value="Delete"><br>
-</form>
-<? endif ?>
+$baz++;
+++$baz;
+$baz--;
+--$baz;
+
+$a = 4;
+$b = 5;
+echo '<br>',
+    --$a + $b ++ + ++$a;
+echo '<br>', $b;
+
+echo "<br><br><br><br><br><br><br><br><br><br>";
